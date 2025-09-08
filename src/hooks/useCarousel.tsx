@@ -86,7 +86,6 @@ function useCarousel(length: number, interval = 3000) {
   const handleMouseEnter = () => pauseAutoplay();
 
   const getTransform = () => {
-    console.log(currentSlide);
     return `translateX(${
       -currentSlide * 100 +
       (isDragging
