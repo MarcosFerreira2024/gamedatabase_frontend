@@ -25,7 +25,7 @@ type ButtonProps = {
   iconSize?: number;
   className?: string;
   width?: number;
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "darkContrast";
   justify?: JustifyContent;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
