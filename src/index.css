@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import 'tailwind-scrollbar-hide/v4';
+
+:root {
+  font-family: "Poppins";
+}
+
+
+.shadow-text {
+text-shadow: -1px 1px 0 #000000;
+
+
+}
+
