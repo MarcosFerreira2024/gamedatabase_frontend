@@ -8,7 +8,7 @@ export type GameCardListData = {
 
 function GameCardList({ data }: GameCardListData) {
   return (
-    <div className="flex flex-nowrap gap-6 ">
+    <div className="flex scroll flex-nowrap gap-6 ">
       {data.map((item, index) => (
         <GameCard
           favorited={item.favorited}

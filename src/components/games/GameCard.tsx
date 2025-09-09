@@ -26,9 +26,13 @@ function GameCard({
   // const {} = useContext(GameContext);
 
   return (
-    <div className="min-w-[319px] h-[475px] rounded-xl  overflow-hidden dark:border-stone-900 border-1 border-stone-200 dark:bg-stone-950 bg-stone-100">
+    <div
+      style={{ scrollSnapAlign: "start" }}
+      className="min-w-[319px]  select-none max-w-[319px] h-[475px] rounded-xl  overflow-hidden dark:border-stone-900 border-1 border-stone-200 dark:bg-stone-950 bg-stone-100"
+    >
       <div className="relative ">
         <img
+          draggable={false}
           onClick={() => navigate(link)}
           src={image}
           className="h-[323px] cursor-pointer w-full object-cover object-center"
