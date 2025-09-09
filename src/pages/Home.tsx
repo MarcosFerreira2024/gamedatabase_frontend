@@ -6,8 +6,12 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import PlayerModal from "../components/player/PlayerModal";
 import GameCardList from "../components/games/GameCardList";
-import { gameCardMock } from "../data/mock/gamecard-mock";
+import { gameCardMock, upcomingGameMock } from "../data/mock/games-mock";
 import Slider from "../components/games/Slider";
+import UpComingCard from "../components/games/UpComingCard";
+import UpComingCardList from "../components/games/UpComingCardList";
+import Container from "../components/Container";
+import Recent from "../components/games/Recent";
 
 function Home() {
   const { isModalOpen, currentVideo } = useContext(AppContext);
@@ -17,8 +21,17 @@ function Home() {
       <Navbar />
 
       <Carousel data={carouselMock} />
-
-      <Slider title="Recomendados" data={gameCardMock} />
+      <Container>
+        <Slider title="Recomendados" data={gameCardMock} />
+        <UpComingCardList title="Em Breve" data={upcomingGameMock} />
+        <Slider
+          title="Lançamentos
+"
+          data={gameCardMock}
+        />
+        <Slider title="Populares" data={gameCardMock} />
+        <Recent data={gameCardMock.slice(0, 3)} />
+      </Container>
     </>
   );
 }
