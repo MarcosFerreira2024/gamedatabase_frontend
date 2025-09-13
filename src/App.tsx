@@ -7,6 +7,8 @@ import Catalog from "./pages/Catalog";
 import { SidebarProvider } from "./contexts/SidebarContext";
 import { QueryProvider } from "./contexts/QueryContext";
 import Game from "./pages/Game";
+import Search from "./pages/Search";
+import MyGames from "./pages/MyGames";
 
 function App() {
   return (
@@ -20,12 +22,45 @@ function App() {
             <Route
               path="/home/games"
               element={
-                <QueryProvider>
+                <QueryProvider
+                  basePath="/home/games"
+                  allowedParams={[
+                    "name",
+                    "genres",
+                    "platforms",
+                    "modes",
+                    "themes",
+                    "playerPerspectives",
+                    "franchises",
+                    "developers",
+                    "summary",
+                    "usersScore",
+                    "releaseDate",
+                    "publisher",
+                    "sortBy",
+                    "take",
+                    "page",
+                    "style",
+                    "order",
+                  ]}
+                >
                   <Catalog />
                 </QueryProvider>
               }
             />
             <Route path="/home/game/:id" element={<Game />} />
+            <Route
+              path="/home/search"
+              element={
+                <QueryProvider
+                  allowedParams={["name", "sortBy", "take", "page", "style", "order"]}
+                  basePath="/home/search"
+                >
+                  <Search />
+                </QueryProvider>
+              }
+            />
+                        <Route path="/home/my-games" element={<MyGames />} />
           </Routes>
         </BrowserRouter>
       </SidebarProvider>
