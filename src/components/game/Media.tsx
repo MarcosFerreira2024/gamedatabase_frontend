@@ -35,7 +35,7 @@ function Media({ data }: MediaProps) {
               <img
                 onClick={() => setIsPreviewing(item)}
                 src={item.image}
-                className="w-full h-full border-1 border-stone-200 dark:border-stone-900  rounded-xl"
+                className="w-full h-full border-1 grayscale-50 hover:grayscale-0 duration-300 ease-in-out border-stone-200 dark:border-stone-900  rounded-xl"
               />
             </div>
           ))}
