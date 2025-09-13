@@ -7,10 +7,10 @@ export const linkButtons: MenuLinkProps[] = [
   },
   {
     text: "Jogos",
-    to: "/home/games?style=grid",
+    to: "/home/games",
   },
   {
     text: "Minha Lista",
-    to: "/my-games",
+    to: "/home/my-games",
   },
 ];
