@@ -1,14 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export type MenuLinkProps = {
   to: string;
   text: string;
 };
 function MenuLink({ to, text }: MenuLinkProps) {
-  const currentPage = window.location.href;
-  const samePage = currentPage.includes(to);
-
+  const path = useLocation();
   const navigate = useNavigate();
+  const len = path.pathname.split("/").length;
+
+  const samePage =
+    path.pathname.split("/")[len - 1] ===
+    to.split("/")[to.split("/").length - 1];
 
   return (
     <button
