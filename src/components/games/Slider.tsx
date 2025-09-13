@@ -49,4 +49,3 @@ function Slider({ title, data }: SliderProps) {
 }
 
 export default Slider;
-// scrollbar-hide

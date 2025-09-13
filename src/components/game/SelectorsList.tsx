@@ -1,4 +1,3 @@
-// SelectorsList.tsx
 import Selector from "./Selector";
 
 export default function SelectorsList({

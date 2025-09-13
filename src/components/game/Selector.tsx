@@ -1,4 +1,3 @@
-// Selector.tsx
 type SelectorProps = {
   activeSection: number;
   handleSelection: (index: number) => void;
