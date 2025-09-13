@@ -1,9 +1,12 @@
 import React from "react";
 import { variants } from "../buttons/ButtonBase";
+
+export type InputTypes = "text" | "email" | "password" | "number";
+
 type InputProps = {
   size?: "sm" | "md" | "lg" | "xl";
   variant: "light" | "dark" | "darkContrast";
-  type: "text" | "email" | "password";
+  type: InputTypes;
   placeholder?: string;
   id: string;
   name: string;
@@ -43,7 +46,7 @@ function Input({
       id={id}
       name={name}
       onChange={onChange}
-      style={{ height: sizes[size].height }}
+      style={{ minHeight: sizes[size].height }}
       className={`w-full px-2 rounded-md text-sm ${variants[variant]}`}
     />
   );
