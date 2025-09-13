@@ -9,6 +9,7 @@ function useSlider(ref: React.RefObject<HTMLDivElement>) {
   const [startX, setStartX] = React.useState(0);
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsDragging(true);
     setStartX(e.clientX);
   };
@@ -65,6 +66,7 @@ function useSlider(ref: React.RefObject<HTMLDivElement>) {
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
+    isDragging,
     canScrollToRight,
     canScrollToLeft,
   };

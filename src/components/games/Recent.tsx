@@ -1,5 +1,5 @@
 import React from "react";
-import GameCardList from "./GameCardList";
+import GameCardList from "./HomeCardList";
 import type { GameCardProps } from "./GameCard";
 
 function Recent({ data }: { data: GameCardProps[] }) {
