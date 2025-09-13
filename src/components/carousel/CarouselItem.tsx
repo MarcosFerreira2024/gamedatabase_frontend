@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
-import { IconButton } from "../buttons/IconButton";
 import Button from "../buttons/Button";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../contexts/AppContext";
-import Modal from "../Modal";
-import PlayerModal from "../player/PlayerModal";
 
 function CarouselItem({
   src,
@@ -44,7 +41,8 @@ function CarouselItem({
         </div>
 
         <div className="absolute flex gap-6 px-6 py-6 bottom-0 z-40 ">
-          <IconButton
+          <Button
+            holdIcon
             onClick={() => {
               handleCurrentVideo(video);
             }}

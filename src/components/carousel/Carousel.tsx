@@ -1,7 +1,7 @@
 import React from "react";
 import useCarousel from "../../hooks/useCarousel";
 import CarouselItem from "./CarouselItem";
-
+import { motion } from "framer-motion";
 type CarouselProps = {
   data: {
     src: string;
@@ -35,9 +35,12 @@ function Carousel({ data }: CarouselProps) {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
     >
-      <div
-        className="flex transition-all ease-linear motion-safe:duration-300 select-none"
-        style={{ transform: getTransform() }}
+      <motion.div
+        animate={{
+          transform: getTransform(),
+          transition: { duration: 0.2, ease: "linear" },
+        }}
+        className="flex  select-none"
       >
         {extendedData.map((item, i) => (
           <CarouselItem
@@ -49,7 +52,7 @@ function Carousel({ data }: CarouselProps) {
             key={i}
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
