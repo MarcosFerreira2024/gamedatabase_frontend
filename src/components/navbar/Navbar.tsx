@@ -1,6 +1,7 @@
 import MenuLinkList from "./MenuLinkList";
 import { linkButtons } from "../../data/data-buttons";
 import Button from "../buttons/Button";
+import SearchButton from "../Search";
 
 function Navbar() {
   return (
@@ -12,15 +13,7 @@ function Navbar() {
       </div>
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Button
-          width={275}
-          size="xl"
-          icon="/icons/search.svg"
-          order="iconFirst"
-          justify="start"
-        >
-          Pesquisar
-        </Button>
+        <SearchButton />
       </div>
 
       <Button
