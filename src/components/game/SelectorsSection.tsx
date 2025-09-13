@@ -1,4 +1,4 @@
-import SelectorsList from "./Selectorslist";
+import SelectorsList from "./SelectorsList";
 
 function SelectorsSection({
   activeSection,
