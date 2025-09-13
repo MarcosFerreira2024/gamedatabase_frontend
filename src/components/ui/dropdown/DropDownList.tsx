@@ -22,7 +22,7 @@ function DropDownList<T extends string>({
           value={item.value}
           dataValue={item.dataValue}
           selected={selected === item.dataValue}
-          setSelected={() => setSelected(item.dataValue)}
+          setSelected={setSelected}
         />
       ))}
     </div>
