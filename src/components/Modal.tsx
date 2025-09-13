@@ -6,7 +6,7 @@ type ModalProps = {
 };
 
 function Modal({ children }: ModalProps) {
-  const modalRoot = document.getElementById("root") as HTMLElement;
+  const modalRoot = document.getElementById("portal-root") as HTMLElement;
 
   return ReactDOM.createPortal(children, modalRoot);
 }
