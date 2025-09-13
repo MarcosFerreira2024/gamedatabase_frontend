@@ -1,6 +1,8 @@
 import React from "react";
 import { variants } from "./ButtonBase";
 
+import { motion } from "framer-motion";
+
 type JustifyContent =
   | "normal"
   | "flex-start"
@@ -20,19 +22,23 @@ type JustifyContent =
 type ButtonProps = {
   icon?: string;
   size: "xs" | "sm" | "md" | "lg" | "xl";
-  children: React.ReactNode;
+  children?: React.ReactNode;
   order?: "iconFirst" | "textFirst";
   iconSize?: number;
   className?: string;
+  holdIcon?: boolean;
+  holdContent?: boolean;
   width?: number;
   variant?: "light" | "dark" | "darkContrast";
   justify?: JustifyContent;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & React.ComponentProps<typeof motion.button>;
 
 function Button({
   icon,
   size,
   children,
+  holdContent,
+  holdIcon,
   order,
   width,
   iconSize,
@@ -62,28 +68,33 @@ function Button({
     xs: {
       height: 28,
       padding: 8,
+      borderRadius: 6,
     },
     sm: {
       height: 32,
       padding: 12,
+      borderRadius: 6,
     },
     md: {
       height: 36,
       padding: 12,
+      borderRadius: 12,
     },
     lg: {
       height: 40,
       padding: 12,
+      borderRadius: 12,
     },
     xl: {
       height: 50,
       padding: 12,
+      borderRadius: 12,
     },
   };
 
   const textSizes = {
     xs: "12px",
-    sm: "12px",
+    sm: "16px",
     md: "16px",
     lg: "16px",
     xl: "16px",
@@ -97,21 +108,33 @@ function Button({
   if (!order) order = "textFirst";
 
   return (
-    <button
+    <motion.button
+      whileTap={{ scale: 0.95 }}
       {...rest}
       style={{
+        maxWidth: `${
+          (holdContent && "max-content") ||
+          (holdIcon && `${sizes[size].height}px`)
+        }`,
+
         minHeight: `${sizes[size].height}px`,
         maxHeight: `${sizes[size].height}px`,
+        borderRadius: `${sizes[size].borderRadius}px`,
         width: `${width}px`,
         paddingLeft: `${sizes[size].padding}px`,
         paddingRight: `${sizes[size].padding}px`,
         cursor: `pointer`,
         justifyContent: justifyMap[justify],
       }}
-      className={`${sizes[size]} ${variants[variant]} ${orders[order]} ${className}   rounded-xl    w-full  flex items-center gap-2`}
+      className={`${sizes[size]} ${variants[variant]} ${orders[order]} ${className}   disabled:opacity-50    w-full  flex items-center gap-2`}
     >
       {children && (
-        <p className={`text-nowrap  ${textSizes[size]}`}>{children}</p>
+        <p
+          style={{ fontSize: `${textSizes[size]}` }}
+          className={`text-nowrap  `}
+        >
+          {children}
+        </p>
       )}
       {icon ? (
         <img
@@ -124,7 +147,7 @@ function Button({
           }}
         />
       ) : null}
-    </button>
+    </motion.button>
   );
 }
 

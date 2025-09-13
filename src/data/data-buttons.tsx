@@ -7,7 +7,7 @@ export const linkButtons: MenuLinkProps[] = [
   },
   {
     text: "Jogos",
-    to: "/games",
+    to: "/home/games?style=grid",
   },
   {
     text: "Minha Lista",

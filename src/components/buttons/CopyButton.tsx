@@ -1,19 +1,22 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../contexts/AppContext";
-import { IconButton } from "./IconButton";
+import Button from "./Button";
 
 function CopyButton({ toCopy }: { toCopy: string }) {
   const { copyToClipboard } = useContext(AppContext);
-  const handleCopy = () => {
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     copyToClipboard(toCopy);
     window.alert("Link copiado com sucesso, compartilhe com seus amigos!");
   };
   return (
-    <IconButton
+    <Button
       size="sm"
+      holdIcon
       iconSize={16}
-      onClick={() => handleCopy()}
-      icon="icons/share.svg"
+      onClick={handleCopy}
+      icon="/icons/share.svg"
     />
   );
 }

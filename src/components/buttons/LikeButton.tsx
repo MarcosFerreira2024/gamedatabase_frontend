@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "./IconButton";
+import Button from "./Button";
 
 function LikeButton({
   isFav,
@@ -12,13 +12,20 @@ function LikeButton({
   gameId: string;
   className?: string;
 }) {
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleFav(gameId);
+  };
+
   return (
-    <IconButton
+    <Button
+      holdIcon
       title="close video"
       iconSize={16}
-      onClick={() => handleFav(gameId)}
+      onClick={handleClick}
       className={`absolute  top-3  right-3 ${className}`}
-      icon={isFav ? "icons/heart.svg" : "icons/heart-filled.svg"}
+      icon={isFav ? "/icons/heart.svg" : "/icons/heart-filled.svg"}
       size="sm"
       variant="dark"
     />
