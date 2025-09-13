@@ -24,11 +24,7 @@ function Catalog() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="flex flex-col gap-5 w-full"
           >
-            <SortSection
-              isSidebarOpen={sideBarVisibility}
-              openSidebar={setSideBarVisibility}
-              searchLength={0}
-            />
+            <SortSection searchLength={0} />
             <section className="px-4">
               <GameCardList data={gameCardMock} />
             </section>
