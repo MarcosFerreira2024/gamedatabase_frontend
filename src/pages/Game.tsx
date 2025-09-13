@@ -1,5 +1,3 @@
-import React from "react";
-import { useParams } from "react-router-dom";
 import Mainlayout from "../layout/Mainlayout";
 import Recent from "../components/games/Recent";
 import { gameCardMock, gameGaleryMock } from "../data/mock/games-mock";
