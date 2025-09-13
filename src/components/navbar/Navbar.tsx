@@ -1,11 +1,10 @@
 import MenuLinkList from "./MenuLinkList";
 import { linkButtons } from "../../data/data-buttons";
 import Button from "../buttons/Button";
-import { IconButton } from "../buttons/IconButton";
 
 function Navbar() {
   return (
-    <nav className=" relative flex items-center px-6 justify-between w-full h-[82px] bg-stone-950 border-b-1 border-stone-900">
+    <nav className=" z-10 sticky top-0  flex items-center px-6 justify-between w-full h-[82px] bg-stone-950 border-b-1 border-stone-900">
       <div className="flex items-center gap-20">
         <div className="h-[48px] w-[48px] bg-black"></div>
 
@@ -16,7 +15,7 @@ function Navbar() {
         <Button
           width={275}
           size="xl"
-          icon="icons/search.svg"
+          icon="/icons/search.svg"
           order="iconFirst"
           justify="start"
         >
@@ -24,9 +23,10 @@ function Navbar() {
         </Button>
       </div>
 
-      <IconButton
+      <Button
+        holdIcon
         size="xl"
-        icon="icons/avatar.svg"
+        icon="/icons/avatar.svg"
         iconSize={24}
         variant="dark"
       />
