@@ -1,4 +1,4 @@
-import GameCardList from "./GameCardList";
+import GameCardList from "./HomeCardList";
 import type { GameCardProps } from "./GameCard";
 import SliderControls from "./SliderControls";
 import useSlider from "../../hooks/useSlider";
@@ -22,7 +22,7 @@ function Slider({ title, data }: SliderProps) {
   } = useSlider(ref as React.RefObject<HTMLDivElement>);
 
   return (
-    <div className="flex flex-col  flex-nowrap gap-4 w-full   mt-10">
+    <div className="flex flex-col  flex-nowrap gap-4 w-full select-none    mt-10">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl text-stone-950 dark:text-stone-100  ">
           {title}

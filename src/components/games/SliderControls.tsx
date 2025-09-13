@@ -1,4 +1,5 @@
-import { IconButton } from "../buttons/IconButton";
+import { useEffect } from "react";
+import Button from "../buttons/Button";
 
 function SliderControls({
   handlePrev,
@@ -13,15 +14,17 @@ function SliderControls({
 }) {
   return (
     <div className="flex gap-4">
-      <IconButton
-        icon="icons/chevron-left.svg"
+      <Button
+        holdIcon
+        icon="/icons/chevron-left.svg"
         iconSize={16}
         size="sm"
         disabled={!canScrollToLeft}
         onClick={() => handlePrev()}
       />
-      <IconButton
-        icon="icons/chevron-right.svg"
+      <Button
+        holdIcon
+        icon="/icons/chevron-right.svg"
         iconSize={16}
         disabled={!canScrollToRight}
         size="sm"
