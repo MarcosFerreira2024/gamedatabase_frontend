@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Button from "./buttons/Button";
 import Input, { type InputTypes } from "./ui/Input";
 import CheckBoxList from "./CheckBoxList";
 import ScrollableSection from "./ScrollableSection";
 import Accordion from "./Accordion";
 import { SidebarContext } from "../contexts/SidebarContext";
-import { useNavigate } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { QueryContext } from "../contexts/QueryContext";
 
 type SidebarProps = { closeModal: () => void; isSidebarOpen: boolean };
@@ -16,6 +14,7 @@ function Detail() {
   return <div className="w-full h-[1px] bg-stone-900"></div>;
 }
 
+// ... (Interfaces can remain the same)
 interface FilterItem {
   id: string;
   name: string;
@@ -34,7 +33,6 @@ interface FiltersData {
   modes: FilterItem[];
   playerPerspective: FilterItem[];
 }
-
 interface ToggleMap {
   [key: string]: (selected: string) => void;
 }
@@ -48,103 +46,116 @@ const filterSections: FilterSections[] = [
 ];
 
 function Sidebar({ closeModal, isSidebarOpen }: SidebarProps) {
-  const navigate = useNavigate();
-  const {
-    genres,
-    platforms,
-    modes,
-    playerPerspective,
-    themes,
-    toggleGenre,
-    toggleMode,
-    togglePerspective,
-    togglePlatform,
-    toggleTheme,
-    getUrl,
-    name,
-    setName,
-    franchises,
-    setFranchises,
-    developers,
-    setDevelopers,
-    summary,
-    setSummary,
-    publisher,
-    setPublisher,
-    releaseDate,
-    setReleaseDate,
-    usersScore,
-    setUsersScore,
-  } = useContext(QueryContext);
-
+  const queryCtx = useContext(QueryContext);
   const { handleToggleAccordion, open } = useContext(SidebarContext);
 
+  const [localName, setLocalName] = useState(queryCtx.name);
+  const [localFranchises, setLocalFranchises] = useState(queryCtx.franchises);
+  const [localDevelopers, setLocalDevelopers] = useState(queryCtx.developers);
+  const [localSummary, setLocalSummary] = useState(queryCtx.summary);
+  const [localPublisher, setLocalPublisher] = useState(queryCtx.publisher);
+  const [localReleaseDate, setLocalReleaseDate] = useState(
+    queryCtx.releaseDate
+  );
+  const [localUsersScore, setLocalUsersScore] = useState(queryCtx.usersScore);
+
+  useEffect(() => {
+    setLocalName(queryCtx.name);
+    setLocalFranchises(queryCtx.franchises);
+    setLocalDevelopers(queryCtx.developers);
+    setLocalSummary(queryCtx.summary);
+    setLocalPublisher(queryCtx.publisher);
+    setLocalReleaseDate(queryCtx.releaseDate);
+    setLocalUsersScore(queryCtx.usersScore);
+  }, [
+    queryCtx.name,
+    queryCtx.franchises,
+    queryCtx.developers,
+    queryCtx.summary,
+    queryCtx.publisher,
+    queryCtx.releaseDate,
+    queryCtx.usersScore,
+  ]);
+
   const dataMap: FiltersData = {
-    genres,
-    themes,
-    platforms,
-    modes,
-    playerPerspective,
+    genres: queryCtx.genres,
+    themes: queryCtx.themes,
+    platforms: queryCtx.platforms,
+    modes: queryCtx.modes,
+    playerPerspective: queryCtx.playerPerspective,
   };
   const toggleMap: ToggleMap = {
-    genres: toggleGenre,
-    themes: toggleTheme,
-    platforms: togglePlatform,
-    modes: toggleMode,
-    playerPerspective: togglePerspective,
+    genres: queryCtx.toggleGenre,
+    themes: queryCtx.toggleTheme,
+    platforms: queryCtx.togglePlatform,
+    modes: queryCtx.toggleMode,
+    playerPerspective: queryCtx.togglePerspective,
+  };
+
+  const handleApply = () => {
+    queryCtx.updateQuery({
+      name: localName,
+      franchises: localFranchises,
+      developers: localDevelopers,
+      summary: localSummary,
+      publisher: localPublisher,
+      releaseDate: localReleaseDate,
+      usersScore: localUsersScore,
+      page: 1,
+    });
   };
 
   const extraInputs = [
     {
       id: "summary",
       placeholder: "Resumo",
-      value: summary,
+      value: localSummary,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setSummary(e.target.value),
+        setLocalSummary(e.target.value),
     },
     {
       id: "franchises",
       placeholder: "Franquia",
-      value: franchises,
+      value: localFranchises,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setFranchises(e.target.value),
+        setLocalFranchises(e.target.value),
     },
     {
       id: "developers",
       placeholder: "Desenvolvedor",
-      value: developers,
+      value: localDevelopers,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setDevelopers(e.target.value),
+        setLocalDevelopers(e.target.value),
     },
     {
       id: "publishers",
       placeholder: "Publicadora",
-      value: publisher,
+      value: localPublisher,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setPublisher(e.target.value),
+        setLocalPublisher(e.target.value),
     },
     {
       id: "usersScore",
       placeholder: "Pontuação de usuários",
       type: "number",
-      value: usersScore,
+      value: localUsersScore,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setUsersScore(e.target.value),
+        setLocalUsersScore(e.target.value),
     },
     {
       id: "releaseDate",
       placeholder: "Data de Lancamento",
       type: "date",
-      value: releaseDate,
+      value: localReleaseDate,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setReleaseDate(e.target.value),
+        setLocalReleaseDate(e.target.value),
     },
     {
       id: "name",
       placeholder: "Nome",
-      value: name,
+      value: localName,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setName(e.target.value),
+        setLocalName(e.target.value),
     },
   ];
 
@@ -227,14 +238,7 @@ function Sidebar({ closeModal, isSidebarOpen }: SidebarProps) {
                     />
                   )
                 )}
-                <Button
-                  onClick={() => {
-                    const url = getUrl();
-                    navigate(url);
-                  }}
-                  size="sm"
-                  variant="darkContrast"
-                >
+                <Button onClick={handleApply} size="sm" variant="darkContrast">
                   Aplicar
                 </Button>
               </ScrollableSection>
