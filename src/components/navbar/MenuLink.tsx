@@ -18,7 +18,10 @@ function MenuLink({ to, text }: MenuLinkProps) {
       className={`dark:text-stone-50 text-stone-700 underline-offset-4   ${
         samePage ? "underline cursor-default " : "hover:underline "
       }`}
-      onClick={() => navigate(to)}
+      onClick={() => {
+        if (!samePage) navigate(to);
+        else return;
+      }}
     >
       {text}
     </button>
