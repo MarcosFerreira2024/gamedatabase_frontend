@@ -6,7 +6,7 @@ function Anchor({ children, to }: { children: React.ReactNode; to: string }) {
   return (
     <a
       onClick={() => navigate(to)}
-      className="text-stone-950 text-xs underline-offset-2 underline dark:text-stone-400"
+      className="text-stone-950 text-xs cursor-pointer underline-offset-2 underline dark:text-stone-400"
     >
       {children}
     </a>
